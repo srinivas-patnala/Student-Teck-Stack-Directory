@@ -1,0 +1,124 @@
+/* --- Global Variables for Consistency --- */
+:root {
+    --primary-color: #34495e; 
+    --accent-color: #4a69bd; 
+    --form-border: #4a69bd; 
+}
+
+/* --- MODAL OVERLAY STYLES --- */
+.modal-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); 
+  z-index: 1000;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.form-container {
+  max-width: 650px;
+  width: 90%;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+  border: 3px solid var(--form-border);
+  z-index: 1001; 
+}
+
+.form-title {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* --- FORM INPUT STYLES --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2);
+    outline: none;
+}
+
+.custom-tech-input {
+    display: flex;
+    gap: 10px;
+}
+.custom-tech-input input {
+    flex: 1;
+}
+
+/* --- TECH STACKS GRID --- */
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.tech-stack-grid label {
+  margin-bottom: 0;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.tech-stack-grid label:hover {
+  background-color: #e0e6ec;
+}
+
+.tech-stack-grid input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.selection-summary {
+    color: var(--form-border); 
+    font-size: 13px; 
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* --- Form Actions --- */
+.form-actions-footer {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: flex-end; 
+}

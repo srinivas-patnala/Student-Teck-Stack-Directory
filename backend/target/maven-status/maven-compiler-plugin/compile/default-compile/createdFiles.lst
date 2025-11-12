@@ -1,0 +1,12 @@
+com\studenttech\exception\GlobalExceptionHandler.class
+com\studenttech\repository\StudentRepository.class
+com\studenttech\config\DataInitializer.class
+com\studenttech\dto\StudentDTO.class
+com\studenttech\entity\Student$StudentBuilder.class
+com\studenttech\entity\Student.class
+com\studenttech\controller\StudentController.class
+com\studenttech\exception\ResourceNotFoundException.class
+com\studenttech\service\StudentService.class
+com\studenttech\config\SwaggerConfig.class
+com\studenttech\StudentTechBackendApplication.class
+com\studenttech\dto\StudentDTO$StudentDTOBuilder.class

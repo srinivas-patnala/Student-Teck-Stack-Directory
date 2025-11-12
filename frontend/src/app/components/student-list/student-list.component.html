@@ -1,0 +1,117 @@
+<div class="container">
+  <h1 class="page-title" style="text-align: center;">Student Tech Stack Directory</h1>
+
+  <app-student-form 
+    *ngIf="showAddForm || editingStudent"
+    [student]="editingStudent"
+    [availableTechStacks]="availableTechStacks"
+    (studentSaved)="saveStudent($event)"
+    (cancelled)="cancelForm()"
+    (studentDeleted)="handleStudentDelete($event)"
+    (customTechStackAdded)="handleCustomTechStackAdded($event)">
+  </app-student-form>
+
+  <div class="main-layout">
+
+    <div class="student-list-section">
+      
+      <div class="list-header-fixed">
+        <h2>Student Profiles ({{ filteredStudents.length }})</h2>
+      </div>
+      
+      <div *ngIf="filteredStudents.length === 0" class="alert alert-info list-body-scroll-padding">
+        No students found matching the selected filters.
+      </div>
+
+      <div class="student-cards-container list-body-scroll-padding">
+        <div *ngFor="let student of filteredStudents" class="classy-student-card">
+          
+          <div class="card-header-area">
+            <h3 class="card-title">{{ student.name }}</h3> 
+          </div>
+          
+          <div class="card-body-area">
+            <strong class="tech-label">Tech Stacks:</strong>
+            <div class="tech-badges-group">
+              <span 
+                *ngFor="let tech of student.techStacks" 
+                class="badge"
+                [ngClass]="getTechStackBadgeClass(tech)">
+                {{ tech }}
+              </span>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-warning btn-sm" (click)="editStudent(student)">
+                <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="btn-danger btn-sm" (click)="deleteStudent(student.id)">
+                <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-sidebar">
+      
+      <div class="search-input-container">
+        <input 
+          type="text" 
+          placeholder="Search by name or tech stack..."
+          [(ngModel)]="searchQuery" 
+          (input)="applyFilter()" 
+          class="search-input">
+        <button 
+          *ngIf="searchQuery"
+          class="btn-clear-search"
+          (click)="clearSearch()">
+          X
+        </button>
+      </div>
+      <div class="sidebar-action-button">
+        <input type="file" #fileInput accept=".xlsx" style="display:none" (change)="onFileSelected($event)" />
+        <button class="btn-primary" (click)="fileInput.click()" [disabled]="uploading">
+          {{ uploading ? 'Uploading...' : '⬆️ Upload Excel' }}
+        </button>
+      </div>
+      <div class="sidebar-action-button">
+        <button class="btn-success" (click)="toggleAddForm()">
+          {{ showAddForm || editingStudent ? 'X Close Form' : '+ Add New Student' }}
+        </button>
+      </div>
+
+      <div class="filter-card">
+        <h3>Filter by Tech Stacks</h3>
+        
+        <p class="filter-help-text">
+          Select stacks (students must have ALL selected)
+        </p>
+        
+        <div class="filter-options-grid">
+          <label *ngFor="let tech of availableTechStacks" class="filter-option-item">
+            <input 
+              type="checkbox" 
+              [checked]="selectedTechStacks[tech]"
+              (change)="onTechStackChange(tech, $any($event.target).checked)">
+            <span>{{ tech }}</span>
+          </label>
+        </div>
+
+        <div class="filter-actions-summary">
+          <button class="btn-secondary" (click)="clearFilters()">
+              Clear All Filters
+          </button>
+          <p class="filter-summary">
+            <span style="color: #4a69bd; font-weight: 600;">
+              {{ getSelectedTechStacksCount() }} filter(s) active
+            </span>
+            <br>
+            Showing {{ filteredStudents.length }} of {{ students.length }} students
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
