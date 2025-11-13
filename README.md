@@ -1,7 +1,7 @@
-For running of thsi project in your local system, run these following commands:
+For running of this project in your local system, run these following commands:
  In frontend folder:
 npm install (for dependecies purpose)
-npm start or ng serve
+npm start or ng serve(Initiating purpose)
 
 In backend folder:
-mvn spring-boot:run
+mvn spring-boot:run(start the backend server)
